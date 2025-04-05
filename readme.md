@@ -59,8 +59,7 @@ Once the service is installed, you will find a configuration folder named after 
 Inside, locate the `config.json` file and modify it to fit your needs.
 
 > [!TIP]
-> Feel free to play with the settings.
-> 📝 `C:\ProgramData\NoisyWallpaper\config.json`
+> Feel free to play with the settings `C:\ProgramData\NoisyWallpaper\config.json`
 
 > [!TIP]
 > Choose your color palette at [Color picker](https://coolors.co/34344a-80475e-cc5a71-c89b7b-f0f757)
