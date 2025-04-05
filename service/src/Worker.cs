@@ -94,7 +94,7 @@ public class Worker : BackgroundService, IDisposable
             } catch(HttpRequestException) {
                 _logger.LogError("Unable to reach the API.");
             } finally {
-                _logger.LogInformation($"Retrying... ({attempt}/{MAX_FETCH_WALLPAPER_ATTEMPT})");
+                _logger.LogInformation($"Retrying... ({attempt + 1}/{MAX_FETCH_WALLPAPER_ATTEMPT})");
                 await Task.Delay(TimeSpan.FromSeconds(TIME_BEFORE_RETRY_SEC), stoppingToken);
             }
         }
