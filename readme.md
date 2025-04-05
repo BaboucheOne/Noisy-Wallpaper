@@ -5,6 +5,9 @@
 
 ---
 
+| ![Image 1](images/lava_point.png) | ![Image 2](images/deep_blue.png) | ![Image 3](images/light_orange_blue.png) |
+|------------------------------|------------------------------|------------------------------|
+
 ## 📦 Installation & Setup
 
 ### 1️⃣ Setting Up the API (Go + Docker)
@@ -55,7 +58,12 @@
 Once the service is installed, you will find a configuration folder named after the service.
 Inside, locate the `config.json` file and modify it to fit your needs.
 
-📝 **Example Path:** `C:\ProgramData\NoisyWallpaper\config.json`
+> [!TIP]
+> Feel free to play with the settings.
+> 📝 `C:\ProgramData\NoisyWallpaper\config.json`
+
+> [!TIP]
+> Choose your color palette at [Color picker](https://coolors.co/34344a-80475e-cc5a71-c89b7b-f0f757)
 
 ---
 
