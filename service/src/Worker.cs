@@ -56,6 +56,8 @@ public class Worker : BackgroundService, IDisposable
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        _logger.LogInformation("NoisyWallaper started at: {time}", DateTimeOffset.Now);
+
         while (!stoppingToken.IsCancellationRequested)
         {
             try {
@@ -69,7 +71,6 @@ public class Worker : BackgroundService, IDisposable
                 } else {
                     _logger.LogInformation($"Unable to apply wallpaper.");
                 }
-
             } catch(Exception e) {
                 _logger.LogError($"Unexpected error: {e}");
             } finally {
@@ -93,7 +94,6 @@ public class Worker : BackgroundService, IDisposable
                 }
             } catch(HttpRequestException) {
                 _logger.LogError("Unable to reach the API.");
-            } finally {
                 _logger.LogInformation($"Retrying... ({attempt + 1}/{MAX_FETCH_WALLPAPER_ATTEMPT})");
                 await Task.Delay(TimeSpan.FromSeconds(TIME_BEFORE_RETRY_SEC), stoppingToken);
             }

@@ -1,20 +1,33 @@
 using service;
 
 string applicationDirectoryFullPath = PathHelper.ApplicationDirectoryFullPath();
-if(!Directory.Exists(applicationDirectoryFullPath)) {
+if (!Directory.Exists(applicationDirectoryFullPath)) {
     Directory.CreateDirectory(applicationDirectoryFullPath);
 }
 
-HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
+SettingsFactory settingsFactory = new SettingsFactory();
 
-builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+IHostBuilder builder = Host.CreateDefaultBuilder(args);
 
-builder.Services.AddSingleton(provider => {
-    SettingsFactory settingsFactory = new SettingsFactory();
-    return settingsFactory.LoadOrCreateDefaultSettings();
+builder.ConfigureLogging((hostingContext, config) => { 
+    config.AddProvider(new FileLoggerProvider(PathHelper.LogFullPath()));
 });
 
-builder.Services.AddHostedService<Worker>();
+builder.ConfigureServices((hostContext, services) => {
+
+    Settings settings = settingsFactory.LoadOrCreateDefaultSettings();
+
+    services.AddSingleton(settings);
+
+    services.AddHostedService<Worker>();
+});
+
+if(OperatingSystem.IsWindows()) {
+    builder.UseWindowsService();
+} else if(OperatingSystem.IsLinux()) {
+    builder.UseSystemd();
+}
+
 
 IHost host = builder.Build();
 host.Run();
