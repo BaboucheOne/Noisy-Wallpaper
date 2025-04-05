@@ -31,12 +31,23 @@
    - Open a **Command Prompt** as Administrator.
    - Run the following command:
      ```sh
-     sc create "NoisyWallpaper" binPath="C:\path\to\output\NoisyWallpaper.exe"
+     sc create NoisyWallpaper binPath="C:\path\to\output\NoisyWallpaper.exe"
      ```
    - Start the service:
      ```sh
      net start NoisyWallpaper
      ```
+
+### 3️⃣ Update the Service (C# Windows Service)
+   - Open a **Command Prompt** as Administrator.
+   - Run the following commands:
+     ```sh
+     sc stop NoisyWallpaper
+     ```
+     ```sh
+     sc delete NoisyWallpaper
+     ```
+   - Go to section 2️⃣, step 4. 
 
 ---
 
